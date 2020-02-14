@@ -10,6 +10,25 @@ const ShoppingListService = {
           .returning('*')
           .then(rows => rows[0]);
       },
+    
+    getById(db,id) {
+        return db('shopping_list')
+            .select('*')
+            .where({ id })
+            .first();
+    },
+
+    deleteItem(db, id) {
+        return db('shopping_list')
+          .where({ id })
+          .delete();
+      },
+    
+    updateItem(db, id, data) {
+        return db('shopping_list')
+            .where({ id })
+            .update(data);
+    }
 }
 
 module.exports = ShoppingListService;
